@@ -18,10 +18,20 @@ function searchWeather() {
             var weatherData = new Weather(cityName, data.weather[0].description.toUpperCase());
             weatherData.temperature = data.main.temp;
             console.log(weatherData);
+            updateWeather(weatherData);
         } else if (http.readyState === XMLHttpRequest.DONE) {
             alert('something went wrong');
         }
     }
 
     http.send();
+}
+
+function updateWeather(weatherData) {
+    weatherCity.textContent = weatherData.cityName;
+    weatherDescription.textContent = weatherData.description;
+    weatherTemperature.textContent = weatherData.temperature;
+
+    weatherBox.style.display = "block";
+    loadingText.style.display = "none";
 }
